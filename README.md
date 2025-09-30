@@ -7,5 +7,5 @@ Using jBang to run java files as scripts.
 To run a specific day (from the repo root directory):
 
 ```
-$ jbang scripting/Day<number>.java
+$ java scripting/Day<number>.java
 ```

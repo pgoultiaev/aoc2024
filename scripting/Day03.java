@@ -2,20 +2,16 @@
 
 import static java.lang.System.*;
 
-import java.nio.file.*;
+import utils.AocUtils;
 import java.util.regex.*;
 
 public class Day03 {
 
     public static void main(String... args) throws Exception {
-        String inputPartOne = readfile("scripting/testDay03.txt");
-        out.println(partOne(inputPartOne));
-        String inputPartTwo = readfile("scripting/testDay03Part2.txt");
-        out.println(partTwo(inputPartTwo));
-    }
-
-    public static String readfile(String filename) throws Exception {
-        return Files.readString(Paths.get(filename));
+        String inputFile = args.length > 0 ? args[0] : "scripting/input/day03.txt";
+        String input = AocUtils.readString(inputFile);
+        out.println(partOne(input));
+        out.println(partTwo(input));
     }
 
     public static int partOne(String input) {

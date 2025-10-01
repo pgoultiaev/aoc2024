@@ -2,32 +2,28 @@
 
 import static java.lang.System.*;
 
-import java.nio.file.*;
+import utils.AocUtils;
 import java.util.List;
 import java.util.stream.*;
 
 public class Day01 {
 
     public static void main(String... args) throws Exception {
-        List<List<Integer>> lists = readfile("scripting/testDay01.txt");
+        String inputFile = args.length > 0 ? args[0] : "scripting/input/day01.txt";
+        List<List<Integer>> lists = parseInput(inputFile);
         out.println(partOne(lists.get(0), lists.get(1)));
         out.println(partTwo(lists.get(0), lists.get(1)));
     }
 
-    // Read a file and parse them into pairs of ints
-    public static List<List<Integer>> readfile(String filename) throws Exception {
-        Path path = Paths.get(filename);
-
-        List<int[]> pairs = Files.lines(path)
+    public static List<List<Integer>> parseInput(String filename) throws Exception {
+        List<int[]> pairs = AocUtils.readStream(filename)
                 .map(line -> line.trim().split("   "))
                 .map(pair -> new int[] { Integer.parseInt(pair[0]), Integer.parseInt(pair[1]) })
                 .collect(Collectors.toList());
 
-        // extract the first and second columns into separate lists and sort them
         List<Integer> first = pairs.stream().map(pair -> pair[0]).sorted().collect(Collectors.toList());
         List<Integer> second = pairs.stream().map(pair -> pair[1]).sorted().collect(Collectors.toList());
 
-        // return both lists in a list
         return List.of(first, second);
     }
 

@@ -2,7 +2,7 @@
 
 import static java.lang.System.*;
 
-import java.nio.file.*;
+import utils.AocUtils;
 import java.util.List;
 import java.util.function.*;
 import java.util.stream.*;
@@ -10,13 +10,10 @@ import java.util.stream.*;
 public class Day04 {
 
     public static void main(String... args) throws Exception {
-        List<String> grid = readfile("scripting/Day04.txt");
+        String inputFile = args.length > 0 ? args[0] : "scripting/input/day04.txt";
+        List<String> grid = AocUtils.readLines(inputFile);
         out.println(partOne(grid));
         out.println(partTwo(grid));
-    }
-
-    public static List<String> readfile(String filename) throws Exception {
-        return Files.readAllLines(Paths.get(filename));
     }
 
     public static long partOne(List<String> grid) {

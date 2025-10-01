@@ -2,15 +2,16 @@
 
 import static java.lang.System.*;
 
+import utils.AocUtils;
+
 public class Day02 {
 
     public static void main(String... args) throws Exception {
-        out.println(partOne());
-        out.println(partTwo());
+        String inputFile = args.length > 0 ? args[0] : "scripting/input/day02.txt";
+        out.println(partOne(inputFile));
+        out.println(partTwo(inputFile));
     }
 
-    // Validates if every successor number is within 3 of its predecessor (either
-    // direction)
     public static boolean isLineValid(String line) {
         String[] parts = line.trim().split("\\s+");
         java.util.List<Integer> numbers = java.util.Arrays.stream(parts)
@@ -23,8 +24,6 @@ public class Day02 {
         return allIncreasing || allDecreasing;
     }
 
-    // Checks if the line can be made valid by removing one successor (any number
-    // except the first)
     public static boolean isLineValidWithOneRemoval(String line) {
         return isLineValid(line) || java.util.stream.IntStream.range(0, line.trim().split("\\s+").length)
                 .anyMatch(i -> {
@@ -37,21 +36,19 @@ public class Day02 {
                 });
     }
 
-    public static int partOne() {
-        String filename = "scripting/testDay02.txt";
-        try (java.util.stream.Stream<String> lines = java.nio.file.Files.lines(java.nio.file.Paths.get(filename))) {
+    public static int partOne(String filename) {
+        try (java.util.stream.Stream<String> lines = AocUtils.readStream(filename)) {
             return (int) lines.filter(Day02::isLineValid).count();
-        } catch (java.io.IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
     }
 
-    public static int partTwo() {
-        String filename = "scripting/testDay02.txt";
-        try (java.util.stream.Stream<String> lines = java.nio.file.Files.lines(java.nio.file.Paths.get(filename))) {
+    public static int partTwo(String filename) {
+        try (java.util.stream.Stream<String> lines = AocUtils.readStream(filename)) {
             return (int) lines.filter(Day02::isLineValidWithOneRemoval).count();
-        } catch (java.io.IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }

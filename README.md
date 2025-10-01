@@ -40,6 +40,16 @@ $ java scripting/Day01.java scripting/test/day01.txt
 $ java scripting/Day01.java path/to/input.txt
 ```
 
+## Running Tests
+
+Each day can have an optional test file (e.g., `Day05Test.java`) that validates the solution against example inputs.
+
+```bash
+$ java scripting/Day05Test.java
+```
+
+Tests use simple assertions and will print "All tests passed!" if successful, or throw an AssertionError with details if any test fails.
+
 ## Creating a New Day
 
 1. Copy `DayTemplate.java` to `DayXX.java` (replace XX with day number)

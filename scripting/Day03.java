@@ -1,5 +1,3 @@
-///usr/bin/env jbang "$0" "$@" ; exit $?
-
 import static java.lang.System.*;
 
 import utils.AocUtils;
@@ -26,10 +24,10 @@ public class Day03 {
     public static int partTwo(String input) {
         Pattern pattern = Pattern.compile("mul\\((\\d{1,3}),(\\d{1,3})\\)|do\\(\\)|don't\\(\\)");
         Matcher matcher = pattern.matcher(input);
-        
+
         boolean enabled = true;
         int sum = 0;
-        
+
         while (matcher.find()) {
             String instruction = matcher.group();
             if (instruction.equals("do()")) {
